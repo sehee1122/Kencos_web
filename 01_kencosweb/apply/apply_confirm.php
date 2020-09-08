@@ -1,6 +1,6 @@
 <?
 //    $fp = fopen("member.dat", "a+");
-    mysqli_query("kencosdb");
+    mysqli_query("medical_db");
     
     $t = time();
     $tmp = "$name/$phone1/$phone2/$phone3/$email/$REMOTE_ADOR/$time `r`n";
