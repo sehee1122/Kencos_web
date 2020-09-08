@@ -70,3 +70,4 @@ $insertQuery = "insert into medical_db (name,phone,email)"
 $result = mysql_query($insertQuery,$conn);
 
 ?>
+
