@@ -5,7 +5,7 @@
 
 $host = "localhost"; 
 $user = "sehee";
-$password = "1024";
+$password = "1122";
 $database = "kencosdb";
 
 $conn = mysqli_connect($host, $user, $password, $database);
