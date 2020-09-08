@@ -1,6 +1,32 @@
 ﻿<!DOCTYPE html>
 <html>
 <body>
+    <h1>MySQL에 접속하여 데이터 insert하기</h1>
+    <?php 
+    //mysql 접속 계정 정보 설정
+    $mysql_host = 'localhost';
+    $mysql_user = 'root';
+    $mysql_password = '1122';
+    $mysql_db = 'medical_db';
+    
+    //connetc 설정(host,user,password)
+    $conn = mysql_connect($mysql_host,$mysql_user,$mysql_password);
+    //db 연결
+    $dbconn = mysql_select_db($mysql_db,$conn);
+    
+    //charset UTF8
+    mysql_query("set names utf8");
+    
+    //쿼리문 작성
+    $query = "select * from tb_student";
+    //쿼리보내고 결과를 변수에 저장
+    $result = mysql_query($query);
+    echo "현재 데이터는 아래와 같습니다.<br/>";
+    while($row = mysql_fetch_array($result)){
+        echo "번호: ".$row[name]."/ 성함: ".$row[name]."/ 번호1: ".$row[phone1]
+        ."/ 번호2: ".$row[phone2]."/ 번호3: ".$row[phone3]."/ 이메일: ".$row[email]."<br/>";
+    }    
+    
 <p align="center"> 상담신청 </p>
 
 <style>
@@ -33,6 +59,21 @@
 
 <br>
 <input type="submit" value="무료상담 신청하기" style="width:220px; height:65px; font-size:25px; text-align:center;">
+
+<?php 
+        $insertQuery = "insert into medical_db (name,phone1,phone2,phone3,email)"
+        ." values ('".$_POST['name']."','".$_POST['phone1']."',".$_POST['phone2'].","
+        .$_POST['phone3'].",".$_POST['email'].";
+        $result = mysql_query($insertQuery,$conn);
+        
+        //데이터가 전달되었으면 새로고침하기
+        if (($_POST['name'] != NULL)&($_POST['phone1] != NULL)&($_POST['phone2'] != NULL)
+            &($_POST['phone3'] != NULL)&($_POST['email'] != NULL)){
+         echo "<meta http-equiv='refresh' content='1;apply.php' />";
+        }
+?>
+
+
 
 </form>
 </body>
