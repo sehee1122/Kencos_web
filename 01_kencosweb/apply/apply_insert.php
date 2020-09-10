@@ -24,10 +24,11 @@
             $phone2 = $_POST['phone2'];
             $phone3 = $_POST['phone3'];
             $email = $_POST['email'];
+            $agree = $_POST['agree'];
 
             $phone = $phone1."-".$phone2."-".$phone3; // xxx-xxxx-xxxx
 
-            if (is_null($name) or is_null($phone1) or is_null($phone2) or is_null($phone3) or is_null($email)) {
+            if (!$name or !$phone1 or !$phone2 or !$phone3 or !$email or !isset($agree)) {
                 echo '<h1>Fail</h1>';
             } else {
                 //connect 설정
@@ -40,7 +41,7 @@
             ?>
 
             <p>
-                <a href="apply.php">Add List</a>
+                <a href="apply_add.php">Try again</a>
             </p>
     </body>
 </html>
