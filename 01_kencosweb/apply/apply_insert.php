@@ -37,7 +37,6 @@
                 
                 mysqli_query($conn, $sql);
                 echo '<h1>Success</h1>';
-            </script>
             }
             ?>
             
