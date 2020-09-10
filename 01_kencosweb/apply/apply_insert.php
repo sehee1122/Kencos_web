@@ -19,21 +19,21 @@
             $password = "1122";
             $database = "medical_db";
         
-            $name = $_POST['name'];
-            $phone1 = $_POST['phone1'];
-            $phone2 = $_POST['phone2'];
-            $phone3 = $_POST['phone3'];
-            $email = $_POST['email'];
-            $agree = $_POST['agree'];
+            $ka_name = $_POST['name'];
+            $ka_phone1 = $_POST['phone1'];
+            $ka_phone2 = $_POST['phone2'];
+            $ka_phone3 = $_POST['phone3'];
+            $ka_email = $_POST['email'];
+            $ka_agree = $_POST['agree'];
 
-            $phone = $phone1."-".$phone2."-".$phone3; // xxx-xxxx-xxxx
+            $ka_phone = $ka_phone1."-".$ka_phone2."-".$ka_phone3; // xxx-xxxx-xxxx
             
-            if (!$name or !$phone1 or !$phone2 or !$phone3 or !$email or !isset($agree)) {
+            if (!$ka_name or !$ka_phone1 or !$ka_phone2 or !$ka_phone3 or !$ka_email or !isset($ka_agree)) {
                 echo '<h1>Fail</h1>';
             } else {
                 //connect 설정
                 $conn = mysqli_connect($host, $user, $password, $database);
-                $sql = "INSERT INTO kencos_apply (name, phone, email) VALUES ('$name', '$phone', '$email');";
+                $sql = "INSERT INTO kencos_apply (ka_name, ka_phone, ka_email) VALUES ('$ka_name', '$ka_phone', '$ka_email');";
                 
                 mysqli_query($conn, $sql);
                 echo '<h1>Success</h1>';
