@@ -14,17 +14,17 @@
     <body>
         <?php
             //mysql 접속 계정 정보 설정
-            $host = "localhost"; 
-            $user = "root";
-            $password = "1122";
-            $database = "medical_db";
+            $host = "keenus13.cafe24.com"; // 183.111.174.52
+            $user = "keenus13";
+            $password = "make59@keenus";
+            $database = "keenus13";
         
-            $ka_name = $_POST['name'];
-            $ka_phone1 = $_POST['phone1'];
-            $ka_phone2 = $_POST['phone2'];
-            $ka_phone3 = $_POST['phone3'];
-            $ka_email = $_POST['email'];
-            $ka_agree = $_POST['agree'];
+            $ka_name = $_POST['your-name'];
+            $ka_phone1 = $_POST['tel-830'];
+            $ka_phone2 = $_POST['tel-831'];
+            $ka_phone3 = $_POST['tel-832'];
+            $ka_email = $_POST['your-email'];
+            $ka_agree = $_POST['your-consent'];
 
             $ka_phone = $ka_phone1."-".$ka_phone2."-".$ka_phone3; // xxx-xxxx-xxxx
             
@@ -37,11 +37,12 @@
                 
                 mysqli_query($conn, $sql);
                 echo '<h1>Success</h1>';
+            </script>
             }
             ?>
             
             <p>
-                <a href="apply_add.php">Try again</a>
+                <a href="index.html">Try again</a>
             </p>
     </body>
 </html>
