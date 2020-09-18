@@ -1,0 +1,431 @@
+/**20200915 세희 켄코스 CSS**/
+
+.kencos-introduce-section {
+  position: relative;
+  width: 100%;
+}
+.kencos-introduce-section .kencos-introduce-section-wrap {
+  width: 1140px;
+  display: flex;
+  margin: 0 auto;
+}
+
+/* 제품소개: 수소를 마시다! - Part1. 제품소개 */
+.kencos-introduce-section-kencos {
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, opacity 0.3s,
+    box-shadow 0.3s;
+  -moz-box-sizing: border-box;
+  background-color: #16182a;
+  padding: 120px 0px 0px 0px;
+  text-align: center;
+  position: relative;
+  display: block;
+}
+
+.kencos-introduce-inner-wrap {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+}
+
+.kencos-ele-column {
+  align-content: center;
+  align-items: center;
+  min-height: 1px;
+}
+
+.kencos-introduce-inner {
+  /*  padding: 0px 0px 0px 0px; */
+  padding: 0px 470px 0px 470px;
+  /*  box-sizing: border-box; */
+  position: relative;
+  display: flex;
+}
+
+.kencos-introduce-inner-column {
+  display: flex;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
+}
+
+.kencos-introduce-title-wrap {
+  width: 100%;
+  z-index: 10;
+  margin-bottom: 0px !important;
+}
+
+.kencos-introduce-title {
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s,
+    -webkit-border-radius 0.3s, -webkit-box-shadow 0.3s;
+}
+
+.site-content .kencos-introduce-tall {
+  text-align: center;
+  color: #dac1a9;
+  font-size: 60px;
+  font-weight: 500;
+  /* font-family: "Noto Sans KR", sans-serif; */
+  line-height: 1.5em;
+  letter-spacing: 7px;
+  /* box-sizing: border-box; */
+  padding: 10;
+  margin: 0;
+  cursor: text !important;
+  user-select: none !important;
+  /* -moz-box-sizing: border-box; */
+}
+
+/* 제품소개: 수소를 마시다! - Part2. 수소를 마시다 */
+.kencos-introduce-name-wrap {
+  text-align: center;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 0px !important;
+  box-sizing: border-box;
+}
+
+.kencos-introduce-name {
+  margin: 0px 0px 60px 0px;
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s,
+    -webkit-border-radius 0.3s, -webkit-box-shadow 0.3s;
+  -moz-box-sizing: border-box;
+}
+
+.kencos-introduce-small {
+  font-size: 35px;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  -moz-box-sizing: border-box;
+}
+
+.w300 {
+  font-weight: 300 !important;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.w700 {
+  font-weight: 700 !important;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.kencos-ele-row {
+  padding: 0;
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  width: 100%;
+  -moz-box-sizing: border-box;
+}
+
+/* 제품소개 첫번째 이미지 */
+.kencos-introduce-contents-wrap {
+  box-shadow: 0px 20px 30px -15px rgba(0, 0, 0, 0.5),
+    0px 40px 40px -20px rgba(0, 0, 0, 0.4),
+    0px 70px 50px -30px rgba(0, 0, 0, 0.3), 0px 40px 60px -5px #6c7a82;
+  z-index: 10;
+  position: relative;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 0px 0px 0px 0px;
+  width: 100%;
+}
+
+.kencos-introduce-contents {
+  display: flex;
+  margin-right: 0;
+  margin-left: 0;
+  position: relative;
+  box-sizing: border-box;
+  /*  box-sizing: border-box; */
+}
+
+.kencos-introduce-column-wrap {
+  padding: 0;
+  display: flex;
+  width: 100%;
+}
+
+.kencos-introduce-wrap {
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s,
+    -webkit-border-radius 0.3s, -webkit-box-shadow 0.3s;
+  box-sizing: border-box;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.kencos-introduce-image {
+  box-sizing: border-box;
+}
+
+.attachment-fullsize {
+  vertical-align: middle;
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* 제품소개 첫번째 구매하기 */
+
+.kencos-introduce-column {
+  font-size: 13px;
+  color: #dac1a9;
+  width: 100%;
+  font-weight: 400;
+}
+
+.kencos-introduce-wrap {
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s,
+    -webkit-border-radius 0.3s, -webkit-box-shadow 0.3s;
+}
+
+.kencos-introduce-text {
+  margin: 30px auto;
+  text-align: center;
+}
+
+.kencos-button-wrap {
+  margin: 0 auto;
+  /*  box-sizing: border-box; */
+  min-height: 1px;
+  display: flex;
+}
+
+.kencos-button-wrap .kencos-button-custom {
+  margin: 0 auto;
+}
+
+.kencos-button-wrap .kencos-button-custom p {
+  padding: 15px;
+  background: #005e66;
+  color: #fff;
+  font-weight: 600;
+  font-size: 20px;
+  width: 150px;
+  margin: 0 auto;
+  cursor: pointer !important;
+}
+
+/**20200916 세희 켄코스 CSS**/
+
+/* 제품사양 KENCOS4의 제품사양 */
+
+.kencos-spec-section {
+  position: relative;
+  width: 100%;
+  left: 0px;
+  background-color: #f5f5f5;
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 120px 0px 120px 0px;
+  display: block;
+}
+
+.kencos-spec-section .kencos-spec-section-wrap {
+  width: 1140px;
+  display: flex;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.kencos-ele-row {
+  /**/
+}
+
+.kencos-ele-column {
+  /**/
+}
+
+.kencos-ele-col-100 .kencos-spec-inner-wrap .kencos-spec-inner {
+  width: 100%;
+  position: relative;
+}
+
+.kencos-spec-inner-wrap {
+  display: -ms-flexbox;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.kencos-spec-inner {
+  margin-bottom: 0px !important;
+}
+
+.kencos-spec-title-column {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 0px 0px 0px 0px;
+  display: block;
+}
+
+.kencos-spec-title-wrap {
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+}
+
+/* 2개~ */
+
+.kencos-spec-title-inner {
+  padding: 0;
+}
+
+.kencos-spec-title {
+  text-align: center;
+}
+
+.kencos-spec-title-tall-wrap {
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s, 
+    -webkit-border-radius 0.3s, -webkit-box-shadow 0.3s;
+}
+
+.kencos-spec-title-tall {
+  color: #12448b;
+  font-weight: 300;
+  padding: 0;
+  margin: 0;
+  font-size: 43px;
+  clear: both;
+  letter-spacing: -0.05em;
+}
+
+.w700 {
+  /**/
+}
+
+/* 제품사양 안전과 신뢰를 더한 KENCOS4의 제품사양에 대해 알려드립니다 */
+
+.kencos-spec-title-small-wrap {
+  text-align: center;
+  width: 100%;
+}
+.kencos-spec-title-small {
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s, 
+    -webkit-border-radius 0.3s, -webkit-box-shadow 0.3s;
+}
+
+.w400 {
+  color: #12448b;
+  font-weight: 300;
+  line-height: 1.6em;
+  padding: 0;
+  margin: 0;
+  font-size: 23px;
+  clear: both;
+/*  letter-spacing: -0.05em; */
+}
+
+.kencos-spec-content-column {
+  margin-top: 35px;
+  margin-bottom: 0px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+}
+
+.kencos-spec-content-wrap {
+  max-width: 1140px;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* 1개~ */
+
+.kencos-ele-col-50 {
+  width: 50%;
+  min-height: 1px;
+}
+
+.kencos-spec-content-inner-wrap {
+  padding: 15px;
+  display: flex;
+}
+
+.kencos-spec-content-inner {
+  width: 100%;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.kencos-spec-content-title-wrap {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 5px !important;
+  padding: 15px 0px 15px 0px;
+  background-color: #12448b;
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s,
+  -webkit-border-radius 0.3s, -webkit-box-shadow 0.3s;
+}
+
+.kencos-spec-content-title {
+  color: #ffffff;
+  letter-spacing: 5px;
+  font-weight: 700;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  font-size: 23px;
+  clear: both;
+}
+
+.white {
+  color:#fff !important;
+  font-family: "Noto Sans KR",sans-serif;
+  color: #ffffff;
+  letter-spacing: 5px;
+  line-height: 1 !important;
+  clear: both;
+}
+
+.kencos-spec-content-contents-wrap {
+  width: 100%;
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s,
+  -webkit-border-radius 0.3s, -webkit-box-shadow 0.3s;
+}
+
+.kencos-spec-content-contents {
+  color: #12448b;
+  font-weight: 700;
+  line-height: 1.7em;
+  margin-bottom: 10px;
+  padding: 6px;
+  margin: 0;
+  font-size: 22px;
+  clear: both;
+  letter-spacing: -0.05em;
+}
+
+.c_custom01 {
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #a2a2a2 !important;
+  font-weight: 400 !important;
+}
+
+
