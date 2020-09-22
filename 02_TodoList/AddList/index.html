@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<!--    <title align="center" style="color:indigo">Todo List</title>
+    <meta name="viewport" content="width=devide-width, initial-scale=1.0">
+
+    <link href="reset.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+-->
+    <style>
+      
+    </style>
+  </head>
+
+  <body>
+    <!--<h1 align="center" style="color:indigo">Todo List</h1>
+    <h2 align="center" style="color: blueviolet">Sehee's schedule</h2>
+         <p>   <input type = 'text' id = 'inputText'/>-->
+    <h1 align="center" style="color:midnightblue">Todo List</h1>
+    <h2 align="center" style="color:darkslateblue">- Sehee's schedule -</h2>
+
+    <form action = "addlist.php" method="POST">
+      <div class="container">
+        <div class="row">
+          <a href="/todo/todolist.html"><h5 id="todolistHeader">click here</h5></a>
+        </div>
+        <div class="row">
+          <div class="col">
+            <hr>
+            <p id="enter">Write and Press Enter</p>
+            <p class="inputarea">
+              <ul id="todolist">
+                <select name=classification size=1>
+                  <option value="" selected disabled hidden>구분</option>
+                  <option value=1>학교</option>
+                  <option value=2>회사</option>
+                  <option value=3>공부</option>
+                  <option value=4>어학</option>
+                  <option value=5>자격증</option>
+                  <option value=6>대외활동</option>
+                  <option value=7>자기계발</option>
+                  <option value=8>취미활동</option>
+                  <option value=9>기타</option>
+                </select>
+                <input type="text" name="inputText" placeholder="what to do" onkeyup="onkeyup();">
+                <button onclick="inputText.onkeyup">Add To do</button>
+              </ul>
+            </p>
+          </div>
+          <div class="col">
+            <hr>
+            <p id="enter">Done</p>
+            <button onclick="inputText.onkeyup()">현재 날짜와 시간</button>
+            <ul id="donelist"></ul>
+            <table width="100%" border="1">
+              <tr>
+                <th>num</th>
+                <th>date</th>
+                <th>todo</th>
+                <th>details</th>
+                <th>color</th>
+              </tr>
+              <!--TodoList.forEach(function(item, index) {})-->
+            </table>
+          </div>
+        </div>
+      </div>
+    </form>
+
+<!--
+    <p align="center">
+      <input type="text" id="inputText">
+      <button id="btnAdd">New Item</button>
+    </p>
+      <ul id="todolist">
+        <li><input type="checkbox"/><span>Write First item</span></li>
+      </ul>-->
+
+      <script type="text/javascript" src="/todo/main.js"></script>
+  </body>
+</html>
+
