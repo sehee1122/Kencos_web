@@ -6,6 +6,32 @@
 </script>
 */
 
+/*
+function send_nodeDB() {
+  $("#addbtn").click(function() {
+    $.ajax({
+      url: '/postTest',
+      async: true,  // false: 동기 요청
+      type: 'POST', // GET, POST
+      data: {
+        dueDate: $('#currentDate').val(),
+        toDo: $("#classification select").val(),
+        toDetails: $("#addtodo input[type=text]").val(),
+        toColor: $('#addtodo input[type=color]').val(),
+      },
+      dataType: 'json',
+      success: function(data) {
+        alert("POST success");
+      },
+      error: function(err) {
+        alert("POST fail");
+      }
+    })
+  })
+}
+*/
+
+
 const { nodes } = require("stylus");
 
 var totalOfItems = 0;
@@ -48,6 +74,7 @@ function deleteItem(donelist) {
 }
 
 function mouseover() {
+  
   var pencilIconId = this.id.replace('li_', '');
   var pencilIcon = document.getElementById('pencilIcon_' + pencilIconId);
   var minusIcon = document.getElementById('minusicon_' + pencilIconId);
@@ -82,32 +109,32 @@ function addNewItem(list, itemText) {
   span.innerText = itemText;
   
   const pencilIcon = document.createElement('i');
-  pencilIcon.className = 'pencil';  // class name....
+  pencilIcon.className = 'fa fa-pencil';  // Font Awesome library
   pencilIcon.id = 'pencilIcon_' + id;
   pencilIcon.onclick = renameItem;
 
   const minusIcon = document.createElement('i');
-  minusIcon.className = 'minus';
+  minusIcon.className = 'fa fa-minus';
   minusIcon.id = 'minusIcon_' + id;
   minusIcon.onclick = deleteItem;
 
   listItem.appendChild(span);
   listItem.appendChild(minusIcon);
   listItem.appendChild(pencilIcon);
-  listItem.appendChild(listItem);
+  list.appendChild(listItem);
 }
 
-var inputText = document.getElementById('inputText');
+const inputText = document.getElementById('inputText');
 inputText.focus();
 
-inputText.onkeyup = function(event) {
+inputText.onkeyup = function(event) { // 문자 입력 후 이벤트 발생 / onKeyDown: 이벤트 발생 후 문자 입력
 //function enterKey() {
   // event which (13) === ENTER key
   if(event.which === 13) {
-    var inputText = inputText.value;
-      if(!itemText || itemText === "" || itemText === " ") return false;  // blank 방지
+    var itemText = inputText.value;
+      if(itemText === "" || itemText === " ") return false;  // blank 방지
       else {
-        addNewItem(document.getElementById('todolist'), itemText);
+        addNewItem(document.getElementById('todolist').method = "post", itemText);
         inputText.focus();    // 애플리케이션을 실행시킨 후 바로 실행
         inputText.select();   // 아밴트 코드 안의 포커스를 잡고, 그 영역을 선택
       }
@@ -122,7 +149,7 @@ app.get('/index.html', function(req, res) {
 
   if(tdTodo) {  // tdTodo가 유효하다면
     // SQL문 실행
-    connection.query("INSERT INTO TodoList (tdTodo, tdDetails, tdColor) VALUES ('"+ tdTodo +"', '"+ tdDetails +"', '"+ tdColor +"')",
+    connection.query("INSERT INTO TodoList (dueDate, toDo, tdDetails, tdColor, todayDate) VALUES ('"+ dueDate +"', '"+ toDo +"', '"+ tdDetails +"', '"+ tdColor +"', '"+ todayDate +"')",
       function(error, result, fields) {
         if (error) {  // 에러 발생시
           res.send('err: '+ error)

@@ -46,35 +46,238 @@ server.listen(port, hostname, () => {
 });
 */
 
+/*
+//const mdbConn = require('./todo/mariaDBConn');
 const express = require('express')   // create server - express module, require method
 const app = express().use(express.static(__dirname + '/'))
 const PORT = 3000;
-const bodyParser = require('body-parser') // express 미들웨어: body-parser
+const bodyParser = require('body-parser'); // express 미들웨어: body-parser
+const { createPool } = require('mysql');
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+const router = express.Router();
+
 app.listen(PORT, () => {
-  console.log(`server listening ${PORT}`)
+  console.log(`Server listening ${PORT}`)
+})
+*/
+
+
+const express = require('express');
+//const ejs = require('ejs');
+const bodyParser = require('body-parser');
+const app = express();
+
+app.set("view engine", "ejs")
+app.use(bodyParser.urlencoded({extended: true}))  // post body 사용 가능
+app.use(bodyParser.json())
+app.use(express.static(__dirname + '/'))
+
+app.get('/', function(req, res) {
+  res.render("test1", {});
 })
 
-app.get('/', (req, res) => {
-  res.readFile(__dirname + '/index.html');
+app.get('/', function(req, res) {
+  res.render("test2", {});
 })
-//app.use('/', express.static('/'))
 
-// MySQL module 불러오기
-var mysql = require('mysql')
+app.listen(3000, function() {
+  console.log('Running well...')
+})
+
+
+const mariadb = require('mariadb');
+const { Router } = require('express');
+//require('dotenv').config()
 
 // MySQL connection 생성
-var connection = mysql.createConnection({
+//const connection = mysql.createConnection({
+//const conn = mariadb.createConnection({
+const pool = mariadb.createPool({
   host: "192.168.1.70", // server local IP
   port: "5506",
   user: "shpark", // 계정 아이디
   password: "",  // 계정 비밀번호
-  database: "my_todo"  // 접속할 DB
+  database: "my_todo",  // 접속할 DB
+  connectionLimit: 5
 })
 
+/* POST Test */
+app.post('/postTest', function(req, res) {
+  console.log(req.body);
+  res.json({ok: true});
+})
+
+/*
+// 라우팅 객체 참조
+const router = express.router();
+
+router.route('/index.html').post(function(req, res) {
+  console.log('/index.html success')
+})
+*/
+
+pool.getConnection()
+    .then(conn => {
+      console.log('MariaDB successfully connected\n')
+      conn.query("SELECT 1 as val")
+        .then(rows => { // rows: [ {val: 1}, meta: ... ]
+          //return conn.query("INSERT INTO TodoList_copy VALUES (dueDate, toDo, toDetails, toColor)", [1, 'mariadb']);
+          return conn.query("INSERT INTO TodoList_copy (dueDate, toDo, toDetails, toColor) VALUES (?, ?, ?, ?)"
+          , [1, 1, 1, 1]);
+        })
+        .then(res => { // res: { affectedRows: 1, insertId: 1, warningStatus: 0 }
+          conn.release(); // release to pool
+        })
+        .catch(err => {
+          conn.release(); // release to pool
+        })
+        
+    }).catch(err => {
+      //not connected
+    });
+
+/*
+conn.query((err) => {
+  if (err) throw err;
+  console.log("Connected!");
+  var sql = "INSERT INTO TodoList (dieDate, toDo, toDetails, toColor) VALUES (1, 1, 1, 1)";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("1 record inserted");
+  });
+});
+
+
+/*
+pool.getConnection()
+  .then(conn => {
+    console.log('MariaDB successfully connected\n')
+  
+    conn.query("SELECT 1 as val")
+      .then(rows => { // rows: [ {val: 1}, meta: ... ]
+        return conn.query("INSERT INTO TodoList value (dueDate, toDo, toDetails, toColor)", [1, 1, 1, 1]);
+      })
+      .then(res => { // res: { affectedRows: 1, insertId: 1, warningStatus: 0 }
+        conn.release(); // release to pool
+      })
+      .catch(err => {
+        conn.release(); // release to pool
+      })
+      
+  }).catch(err => {
+    //not connected
+  });
+*/
+
+
+/*
+app.get('/', function(req, res) {
+  console.log('postpost')
+  res.send('POST request to homepage')
+})
+
+app.get('/', (req, res) => {  // req: Request, res: Response
+  res.readFile(__dirname + '/index.html');
+})
+//app.use('/', express.static('/'))
+
+/*
+router.get('/', function (req, res, next) {
+  mdbConn.getUserList()
+    .then((rows) => {res.json(rows)}) // 쿼리 결과가 json 형태로 출력
+    .catch((err) => {console.error(err)})
+})
+
+const getConnection = function (callback) {
+  pool.getConnection(function(err, connection) {
+    callback(err, connection)
+  })
+}
+module.exports = router;
+
+/* use Sequelize */
+
+
+/*
+pool.getConnection()
+  .then(conn => {
+    
+    conn.query("SELECT 1 as val")
+      .then((rows) => {
+        console.log(rows); //[ {val: 1}, meta: ... ]
+        //Table must have been created before 
+        // " CREATE TABLE myTable (id int, val varchar(255)) "
+        //return conn.query("INSERT INTO myTable value (?, ?)", [1, "mariadb"]);
+      })
+      .then((res) => {
+        console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
+        conn.end();
+      })
+      .catch(err => {
+        //handle error
+        console.log(err); 
+        conn.end();
+      })
+        
+  }).catch(err => {
+    //not connected
+  });
+*/
+
+/*
+promise
+async / await
+
+async function test () {
+
+}
+
+const pool = await test();
+pool
+
+
+pool.getConnection()
+  .then(conn => {
+    get
+    .then(
+      .then
+        
+    )
+    catch(e )
+  }).catch(err => {
+    console.log(err);
+  })
+
+/*
+pool.getConnection()
+  .then(conn => {
+    
+    conn.query("SELECT 1 as val")
+      .then((rows) => {
+        console.log(rows); //[ {val: 1}, meta: ... ]
+        //Table must have been created before 
+        // " CREATE TABLE myTable (id int, val varchar(255)) "
+        return conn.query("INSERT INTO myTable value (?, ?)", [1, "mariadb"]);
+      })
+      .then((res) => {
+        console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
+        conn.end();
+      })
+      .catch(err => {
+        //handle error
+        console.log(err); 
+        conn.end();
+      })
+        
+  }).catch(err => {
+    //not connected
+  });
+*/
+
 // MySQL 접속
+/*
 connection.connect(function(err) {
   if(!err) {
     console.log("Databases is connected ... \n\n")
@@ -82,7 +285,7 @@ connection.connect(function(err) {
     console.log("Error connecting database ... \n\n")
   }
 })
-
+*/
 
 /*
 // query문 작성
