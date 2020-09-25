@@ -66,29 +66,25 @@ app.listen(PORT, () => {
 
 const express = require('express');
 //const ejs = require('ejs');
-const bodyParser = require('body-parser');
 const app = express();
+const bodyParser = require('body-parser');
+const router= express.Router();
 
+// View Engine Setup
+//app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs")
-app.use(bodyParser.urlencoded({extended: true}))  // post body 사용 가능
+
+// Body-parser middleware
+app.use(bodyParser.urlencoded({extended: false}))  // post body 사용 가능
 app.use(bodyParser.json())
 app.use(express.static(__dirname + '/'))
-
-app.get('/', function(req, res) {
-  res.render("test1", {});
-})
-
-app.get('/', function(req, res) {
-  res.render("test2", {});
-})
 
 app.listen(3000, function() {
   console.log('Running well...')
 })
 
-
 const mariadb = require('mariadb');
-const { Router } = require('express');
+const { Router, response } = require('express');
 //require('dotenv').config()
 
 // MySQL connection 생성
@@ -98,16 +94,119 @@ const pool = mariadb.createPool({
   host: "192.168.1.70", // server local IP
   port: "5506",
   user: "shpark", // 계정 아이디
-  password: "",  // 계정 비밀번호
+  password: "shpark",  // 계정 비밀번호
   database: "my_todo",  // 접속할 DB
   connectionLimit: 5
 })
 
+app.get('/', function(req, res) {  // req: Request, res: Response
+  res.sendFile(__dirname + '/index.html');
+})
+
+/* 연결 확인 */
+pool.getConnection()
+    .then(conn => {
+      console.log('MariaDB successfully connected\n')
+    })
+
 /* POST Test */
-app.post('/postTest', function(req, res) {
+app.post('/index.html', function(req, res) {
   console.log(req.body);
   res.json({ok: true});
+
+  const dueDate = req.body.dueDate;
+  const toDo = req.body.toDo;
+  const toDetails = req.body.toDetails;
+  const toColor = req.body.toColor;
+  
+  pool.getConnection()
+  .then(conn => {
+    conn.query("SELECT 1 as val")
+      .then(rows => { // rows: [ {val: 1}, meta: ... ]
+        //return conn.query("INSERT INTO TodoList_copy VALUES (dueDate, toDo, toDetails, toColor)", [1, 'mariadb']);
+        return conn.query("INSERT INTO TodoList_copy (dueDate, toDo, toDetails, toColor) VALUES (?, ?, ?, ?)"
+        , [dueDate, toDo, toDetails, toColor]);
+      })
+      .then(res => { // res: { affectedRows: 1, insertId: 1, warningStatus: 0 }
+        conn.release(); // release to pool
+      })
+      .catch(err => {
+        conn.release(); // release to pool
+      })
+  }).catch(err => {
+    //not connected
+  });
+
+  //const responseData = {'result': 'ok', 'date': req.body.dueDate, 'todo': req.body.toDo, 'details': req.body.toDetails}
+  //res.json(responseData)
 })
+
+//%H:%i:%s
+/*
+router.get('/index.html', function(req, res, next) {
+  res.render('write', {title: '할일 목록 생성'})
+  var page = req.params.page;
+    var sql = "SELECT id, dueDate, toDo, toDetails, toColor" +
+        "doDate_format(regdate,'%Y-%m-%d ') regdate from board";
+    conn.query(sql, function (err, rows) {
+        if (err) console.error("err : " + err);
+        res.render('list', {title: '할일 목록', rows: rows});
+    });
+});
+module.exports = router;
+
+/*
+app.put('/index.html', function(req, res) {
+  console.log('hi')
+
+  const id = req.body.body;
+  const dueDate = req.body.dueDate;
+  const toDo = req.body.toDo;
+  const toDetails = req.body.toDetails;
+  const toColor = req.body.toColor;
+
+  if(dueDate)
+  query += 'name="'+ dueDate +'"';
+  if(toDo)
+  query += 'name="'+ toDo +'"';
+  if(toDetails)
+  query += 'name="'+ toDetails +'"';
+  if(toColor)
+  query += 'name="'+ toColor +'"';
+
+  pool.getConnection()
+  .then(conn => {
+    conn.query('SELECT * from TodoList_copy', function(err, results, fields) {
+      if(err) {
+        console.log(err);
+      }
+      console.log(results);
+    })
+    conn.end()
+  })
+})
+*/
+
+/* GET home page 
+router.get('/', function(req, res, next) {
+  console.log('URL: ${req.url}')
+  pool.getConnection(function(error, conn) {
+  conn.query('SELECT * from TodoList_copy', function(err, rows, fields) {
+    res.render('index', {data: result})
+      conn.release()
+      /*
+      if(!err) {
+        response.send(rows)
+        console.log('The result is: ', rows);
+      } else {
+        console.log('Error while performing Query');
+      }
+      
+    })
+  })
+})
+module.exports = router;
+*/
 
 /*
 // 라우팅 객체 참조
@@ -117,26 +216,6 @@ router.route('/index.html').post(function(req, res) {
   console.log('/index.html success')
 })
 */
-
-pool.getConnection()
-    .then(conn => {
-      console.log('MariaDB successfully connected\n')
-      conn.query("SELECT 1 as val")
-        .then(rows => { // rows: [ {val: 1}, meta: ... ]
-          //return conn.query("INSERT INTO TodoList_copy VALUES (dueDate, toDo, toDetails, toColor)", [1, 'mariadb']);
-          return conn.query("INSERT INTO TodoList_copy (dueDate, toDo, toDetails, toColor) VALUES (?, ?, ?, ?)"
-          , [1, 1, 1, 1]);
-        })
-        .then(res => { // res: { affectedRows: 1, insertId: 1, warningStatus: 0 }
-          conn.release(); // release to pool
-        })
-        .catch(err => {
-          conn.release(); // release to pool
-        })
-        
-    }).catch(err => {
-      //not connected
-    });
 
 /*
 conn.query((err) => {
@@ -148,7 +227,6 @@ conn.query((err) => {
     console.log("1 record inserted");
   });
 });
-
 
 /*
 pool.getConnection()

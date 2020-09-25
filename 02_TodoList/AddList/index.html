@@ -22,7 +22,7 @@
     <h2 align="center" style="color:darkslateblue">- Sehee's schedule -</h2>
     -->
 
-    <form name="Ajaxform" id="AjaxForm">
+    <form action="index.html" name="Ajaxform">
     <!--<form action = "/todo/addlist.php" method="POST">-->
       <div class="container">
         <h1 id="todolistHeader">Todo List</h1>
@@ -42,17 +42,17 @@
           <div class="inputarea">
             <ul id="addtodo">
               <span id="classification">
-                <select name=toDo size=1>
+                <select name='toDo' size=1>
                   <option value="default" selected disabled hidden>select</option>
-                  <option value=1>학교</option>
-                  <option value=2>회사</option>
-                  <option value=3>공부</option>
-                  <option value=4>어학</option>
-                  <option value=5>자격증</option>
-                  <option value=6>대외활동</option>
-                  <option value=7>자기계발</option>
-                  <option value=8>취미활동</option>
-                  <option value=9>기타</option>
+                  <option value=학교>학교</option>
+                  <option value=회사>회사</option>
+                  <option value=공부>공부</option>
+                  <option value=어학>어학</option>
+                  <option value=자격증>자격증</option>
+                  <option value=대외활동>대외활동</option>
+                  <option value=자기계발>자기계발</option>
+                  <option value=취미활동>취미활동</option>
+                  <option value=기타>기타</option>
                 </select>
               </span>
               <input type="text" name="toDetails" placeholder="what to do" onkeyup="onkeyup();">
@@ -68,9 +68,9 @@
                 <ul id="todolist"></ul>
                 <table name="todotable" width="500">
                   <tr>
-                    <th>date</th>
-                    <th>todo</th>
-                    <th>details</th>
+                    <td>date</td>
+                    <td>todo</td>
+                    <td>details</td>
                   </tr>
                 </table>
               </div>
@@ -81,10 +81,7 @@
           <hr>
           <p id="listtitle">Done</p>
           <script>
-            function mover() {
-              var M
-              M
-            }
+
           </script>
           <ul id="donelist"></ul>
           <ul id="todolist"></ul>
@@ -122,7 +119,7 @@
       $(function send_nodeDB() {
         $("#addbtn").click(function() {
           $.ajax({
-            url: '/postTest',
+            url: '/index.html',
             async: true,  // false: 동기 요청
             type: 'POST', // GET, POST
             data: {
@@ -142,7 +139,10 @@
         })
       })
     </script>
-
   </body>
 </html>
 
+<!--document.querySelector(send_nodeDB).addEventListener("click", function() {
+                const inputdata = document.forms[0].elements[0].value;
+                sendAjaxd('http://192.168.1.70:3000/index.html', inputdata)
+              })-->

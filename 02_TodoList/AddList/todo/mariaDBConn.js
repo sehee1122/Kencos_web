@@ -1,3 +1,13 @@
+
+
+
+
+
+
+
+
+
+/*
 // MySQL module 불러오기
 console.log('hi')
 
@@ -11,7 +21,7 @@ const pool = mariadb.createPool({
   host: "192.168.1.70", // server local IP
   port: "5506",
   user: "shpark", // 계정 아이디
-  password: "",  // 계정 비밀번호
+  password: "shpark",  // 계정 비밀번호
   database: "my_todo",  // 접속할 DB
   connectionLimit: 5
 })
@@ -37,7 +47,7 @@ module.exports = {
       });
   }
 }
-
+*/
 
 /*
 $message1 = "다시 시도해주세요.";
