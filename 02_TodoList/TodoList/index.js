@@ -14,17 +14,16 @@ const bodyParser = require('body-parser');
 const app = express();
 // 라우터 분리: Router 객체를 따로 뽑아서 router 변수가 참조
 const router = express.Router();
-app.use(bodyParser.urlencoded({ extended: false }))
+const { Router, response } = require('express');
+
+// const indexRouter = require('./views/index.ejs');
+
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // View Engine Setup
 //app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('views', './views');
-
-// ERROR: Cannot GET /
-app.get('/', (req, res) => {
-  res.render('index');
-})
 
 //app.use('/public', express.static(__dirname + '/public')); 
 app.use('/css', express.static(__dirname + '/css'));
@@ -35,8 +34,19 @@ app.listen(PORT, function() {
   console.log(`Express server listening on port ${PORT}`);
 })
 
+/*
+router.use(function timeLog (req, res, next) {
+  console.log('Time: ', Date.now())
+  next()
+})
+
+var app2 = express()
+app2.get('/', function(req, res) {
+res.send('hello')
+})
+*/
+
 const mariadb = require('mariadb');
-const { Router, response } = require('express');
 //const mainPage = fs.readFileSync('./index.ejs', 'utf8');
 //require('dotenv').config()
 
@@ -64,12 +74,12 @@ pool.getConnection()
       console.log('MariaDB successfully connected\n')
     })
 
-
 // POST Test
 // index.ejs <form action="/views/index.ejs" name="Ajaxform" method="POST">
 app.post('/views/index.ejs', function(req, res) {
   console.log(req.body);
-  res.json({ok: true});
+  //res.json({ok: true});
+  //var responseData = {'result': 'ok'}
 
   const dueDate = req.body.dueDate;
   const toDo = req.body.toDo;
@@ -93,25 +103,62 @@ app.post('/views/index.ejs', function(req, res) {
   }).catch(err => {
     //not connected
   });
-
   //const responseData = {'result': 'ok', 'date': req.body.dueDate, 'todo': req.body.toDo, 'details': req.body.toDetails}
   //res.json(responseData)
+  if (typeof window !== "undefined") {
+    // browser code
+    window.location.back();
+  }
 })
 
+/*
 router.get('/', (req, res, next) => {
     console.log('hi');
   })
+  */
 
-/*
+  /*
+// ERROR: Cannot GET /
+app.get('/', (req, res) => {
+  res.render('index');
+})
+*/
+
+
 // DB에서 데이터 호출
-router.get('/', function(req, res) {
-  fs.readFile(__dirname + '/views/index.ejs', function(err, data) {
+app.get('/', function(req, res) {
+  //res.render('index', {title: 'Express'})
+  fs.readFile(__dirname + '/views/index.ejs', (err, data) => {
     if(err) {
       console.log('readFile Error');
     } else {
+      console.log("data: ");
+      pool.getConnection()
+        .then(conn => {
+          console.log('connect')
+
+          conn.query('SELECT * FROM TodoList_copy')
+            .then(rows => {
+              // DB 불러오기
+              console.log(rows)
+              res.render('.', { prodList: rows })
+            })
+        })
+      /*
+      .then(conn => {
+      
+        .then(rows => {
+          console.log(rows);
+          
+        })
+        
+      }
+      */
+      /*
       res.send(ejs.res.render(data, {
-        data: results }
+        prodList: results }
       ))
+      */
     }
   })
 })

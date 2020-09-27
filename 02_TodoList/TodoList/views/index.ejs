@@ -28,7 +28,7 @@
           <div class="inputarea">
             <ul id="addtodo">
               <span id="classification">
-                <select name='toDo' size=1>
+                <select value="default" name='toDo' size=1 id="addtodoList">
                   <option value="default" selected disabled hidden>select</option>
                   <option value=학교>학교</option>
                   <option value=회사>회사</option>
@@ -44,7 +44,7 @@
               <input type="text" name="toDetails" placeholder="what to do" onkeyup="onkeyup();">
               <input type="color" name="toColor" value="#F5AB99">
               <!--<input type="addtodo" id="Add To do"/>-->
-              <button id="addbtn" class="ajax">Add To do</button>
+              <button id="addbtn" class="ajax" onclick="add.post()">Add To do</button>
               <hr width=90%>
               <p id="listtitle">Todo
                 <button onclick="inputText.onkeyup()">현재 날짜와 시간</button>
@@ -59,7 +59,14 @@
                     <td>Details</td>
                     <td>Color</td>
                   </tr>
-                  
+                  <% prodList.forEach(function(item, index) { %>
+                  <tr>
+                    <td><%= item.dueDate %></td>
+                    <td><%= item.toDo %></td>
+                    <td><%= item.toDetails %></td>
+                    <td><%= item.toColor %></td>
+                  <% }); %> 
+                  </tr>
                   </tr>
                 </table>
               </div>
@@ -87,7 +94,7 @@
     </form>
 
     <%# JQuery id 값으로 접근 %>
-    
+    <%#
     <script>
       $(function send_nodeDB() {
         $("#addbtn").click(function() {
@@ -112,6 +119,6 @@
         })
       })
     </script>
-    
+    %>
   </body>
 </html>
