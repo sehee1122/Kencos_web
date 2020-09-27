@@ -82,10 +82,16 @@ app.post('/views/index.ejs', function(req, res) {
   //var responseData = {'result': 'ok'}
 
   const dueDate = req.body.dueDate;
-  const toDo = req.body.toDo;
+  var toDo = req.body.toDo;
   const toDetails = req.body.toDetails;
   const toColor = req.body.toColor;
 
+  if(!toDo) {
+    //alert('select 값을 선택해주세요.')
+    toDo = "기타";
+    //const window =  new window();
+    //window.alert('select 값을 선택해주세요.')
+  }
   pool.getConnection()
   .then(conn => {
     conn.query("SELECT 1 as val")
@@ -108,6 +114,7 @@ app.post('/views/index.ejs', function(req, res) {
   if (typeof window !== "undefined") {
     // browser code
     window.location.back();
+    window.location.reload(true);
   }
 })
 
@@ -144,21 +151,13 @@ app.get('/', function(req, res) {
               res.render('.', { prodList: rows })
             })
         })
-      /*
-      .then(conn => {
-      
-        .then(rows => {
-          console.log(rows);
-          
+        .catch(err => {
+          console.log('Catch error')
+          conn.release();
         })
-        
-      }
-      */
-      /*
-      res.send(ejs.res.render(data, {
-        prodList: results }
-      ))
-      */
+    .catch(err => {
+      console.log('catch error...')
+    })
     }
   })
 })

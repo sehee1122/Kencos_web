@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <title>To do List</title>
 
-    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../css/style.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   </head>
   
   <body>
+    <%# Cannot POST /index.js %>
     <form action="/views/index.ejs" name="Ajaxform" method="POST">
       <div class="container">
         <h1 id="todolistHeader">Todo List</h1>
@@ -17,7 +18,7 @@
         </a>
       <div class="row">
         <div class="col-todo">
-          <hr>
+          <!--<hr>-->
           <p id="enter"> When do you have to finish? Write and Press Enter!
           <input type='date' name='dueDate' id='currentDate'>
           <script>
@@ -28,7 +29,7 @@
           <div class="inputarea">
             <ul id="addtodo">
               <span id="classification">
-                <select value="default" name='toDo' size=1 id="addtodoList">
+                <select value="default" name='toDo' size=1 id="addtodoList" required>
                   <option value="default" selected disabled hidden>select</option>
                   <option value=학교>학교</option>
                   <option value=회사>회사</option>
@@ -44,10 +45,10 @@
               <input type="text" name="toDetails" placeholder="what to do" onkeyup="onkeyup();">
               <input type="color" name="toColor" value="#F5AB99">
               <!--<input type="addtodo" id="Add To do"/>-->
-              <button id="addbtn" class="ajax" onclick="add.post()">Add To do</button>
+              <button id="addbtn" class="ajax">Add To do</button>
               <hr width=90%>
               <p id="listtitle">Todo
-                <button onclick="inputText.onkeyup()">현재 날짜와 시간</button>
+                <%# <button onclick="inputText.onkeyup()">현재 날짜와 시간</button> %>
               </p>
               <div class="col-todo">
                 <ul id="donelist"></ul>
@@ -65,7 +66,7 @@
                     <td><%= item.toDo %></td>
                     <td><%= item.toDetails %></td>
                     <td><%= item.toColor %></td>
-                  <% }); %> 
+                  <% }); %>
                   </tr>
                   </tr>
                 </table>
@@ -74,7 +75,7 @@
           </div>
         </div>
         <div class="col-done">
-          <hr>
+          <!-- <hr> -->
           <p id="listtitle">Done</p>
           <script>
 
