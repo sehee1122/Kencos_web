@@ -1,3 +1,5 @@
+
+
 body {
   background: #3A5A69;  /*rgb(54, 72, 76), rgb(58, 56, 56)*/
   margin: 0;
@@ -165,17 +167,3 @@ body {
   width: 260px;
   float: right;
 }
-
-/*
-<p style = "color: blue">Todo List</p>
-
-
-<style>
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 500px;
-  }
-</style>
-*/

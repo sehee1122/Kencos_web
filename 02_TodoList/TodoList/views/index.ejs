@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>To do List</title>
 
-    <link href="/css/style.css" rel="stylesheet" type="ttext/css">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   </head>
   
   <body>
-    <form action="/postTest" name="Ajaxform" method="POST">
+    <form action="/views/index.ejs" name="Ajaxform" method="POST">
       <div class="container">
         <h1 id="todolistHeader">Todo List</h1>
         <a href="/todo/todolist.html" style="text-decoration: none">
@@ -60,6 +60,7 @@
                     <td>Color</td>
                   </tr>
                   
+                  </tr>
                 </table>
               </div>
             </ul>
@@ -85,13 +86,13 @@
       </div>
     </form>
 
-    <%# JQuery id 값으로 접근 
-    <form action = "/todo/mariaDBConn.js" method="POST">%>
+    <%# JQuery id 값으로 접근 %>
+    
     <script>
       $(function send_nodeDB() {
         $("#addbtn").click(function() {
           $.ajax({
-            url: '/views/list.ejs',
+            url: '/views/index.ejs',
             async: true,  // false: 동기 요청
             type: 'POST', // GET, POST
             data: {
@@ -111,5 +112,6 @@
         })
       })
     </script>
+    
   </body>
 </html>

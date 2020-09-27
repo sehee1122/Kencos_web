@@ -1,36 +1,46 @@
+/*
+  Node.js의 모듈 시스템
+  각 파일은 분리된 모듈로 간주
+  -> 파일에서 필요한 모듈을 따로 추가
+*/
 
+// 다음 ' ' module을 require하여 파일에 추가
+const fs = require('fs');
+const ejs = require('ejs');
 const http = require('http');
 const express = require('express');
-const ejs = require('ejs');
+const bodyParser = require('body-parser');
 
 const app = express();
-const fs = require('fs');
-const server = http.createServer(app);
-
-const bodyParser = require('body-parser');
-const router= express.Router();
+// 라우터 분리: Router 객체를 따로 뽑아서 router 변수가 참조
+const router = express.Router();
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // View Engine Setup
 //app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+// ERROR: Cannot GET /
 app.get('/', (req, res) => {
   res.render('index');
 })
 
+//app.use('/public', express.static(__dirname + '/public')); 
+app.use('/css', express.static(__dirname + '/css'));
+
+// Express web server create and excute
 const PORT = 3000;
 app.listen(PORT, function() {
   console.log(`Express server listening on port ${PORT}`);
 })
 
-
 const mariadb = require('mariadb');
 const { Router, response } = require('express');
+//const mainPage = fs.readFileSync('./index.ejs', 'utf8');
 //require('dotenv').config()
 
 // MySQL connection 생성
-//const connection = mysql.createConnection({
 //const conn = mariadb.createConnection({
 const pool = mariadb.createPool({
   host: "192.168.1.70", // server local IP
@@ -42,19 +52,21 @@ const pool = mariadb.createPool({
 })
 
 /*
+// app 대신 router에 연결
 router.get('/postTest', function(req, res) {  // req: Request, res: Response
   res.sendFile(__dirname + '/views/index.ejs');
   // fs.readFile
 })
-*/
 
-// 연결 확인
+/* 연결 확인 */
 pool.getConnection()
     .then(conn => {
       console.log('MariaDB successfully connected\n')
     })
 
+
 // POST Test
+// index.ejs <form action="/views/index.ejs" name="Ajaxform" method="POST">
 app.post('/views/index.ejs', function(req, res) {
   console.log(req.body);
   res.json({ok: true});
@@ -86,6 +98,69 @@ app.post('/views/index.ejs', function(req, res) {
   //res.json(responseData)
 })
 
+router.get('/', (req, res, next) => {
+    console.log('hi');
+  })
+
+/*
+// DB에서 데이터 호출
+router.get('/', function(req, res) {
+  fs.readFile(__dirname + '/views/index.ejs', function(err, data) {
+    if(err) {
+      console.log('readFile Error');
+    } else {
+      res.send(ejs.res.render(data, {
+        data: results }
+      ))
+    }
+  })
+})
+
+/*
+// 연결 확인
+router.get('/', function(req, res) {
+  fs.readFile(__dirname + '/views/index.ejs', function(err, data) {
+    if(err) {
+      console.log('readFile error');
+      throw err;
+    } else {
+      console.log("data: " + data);
+      pool.getConnection()
+        .then(conn => {
+          conn.query('SELECT * FROM TodoList_copy', function(error, results) {
+            if(error) {
+              console.log('error: ', error.message);
+            } else {
+              res.send(ejs.render(data, {
+                data: results }
+              ))
+            }
+          })          
+        })
+        .catch(err => {
+          console.log(err)
+          conn.release();
+        })
+    }
+  })
+  console.log('check2')
+})
+
+/*
+            .then(rows => {
+              console.log(rows);
+              res.render('.', { prodList: rows })
+            })
+            .catch(err => {
+              console.log(err);
+              conn.release();
+            })
+ */
+
+// 모듈로 만드는 부분
+module.exports = router;
+
+/*
 router.post('postTest', function(req, res) {
   console.log(req.body.id)
   pool.getConnection()
@@ -95,4 +170,12 @@ router.post('postTest', function(req, res) {
     })
 })
 
-module.exports = router;
+/*
+if(error)
+          console.log('error:', error.message);
+        else{
+          // 조회결과를 'prodList' 변수에 할당한 후 'list.html'에 전달
+          res.send(ejs.render(data, {
+            prodList:results}
+
+            */
