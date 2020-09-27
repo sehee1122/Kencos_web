@@ -1,0 +1,181 @@
+body {
+  background: #3A5A69;  /*rgb(54, 72, 76), rgb(58, 56, 56)*/
+  margin: 0;
+  padding: 0;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Todo List title */
+#todolistHeader {
+  margin: 1.5em 30% 0.5em 30%;
+  padding: 5px 0px 5px 0px;
+  text-align: center;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #3A5A69;  /*lavender*/
+  background-color: #DBDBE5;  /* midnightblue*/
+}
+
+/* - Sehee's schedule */
+#myschedule {
+  margin: 0px 100px 1em 100px;
+  text-align: center;
+  font-weight: 700;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #DBDBE5;  /*darkblue, cornflowerblue*/
+}
+
+/* TodoList text color */
+.col-todo {
+  background-color: #DBDBE5; /*lightsteelblue*/
+  margin-left: 15px;
+  float: left;
+  border: 1px solid #000;
+  width: 70%;
+}
+
+/* Guidance: When do you have to finish? Done */
+#enter {
+  margin-left: 1em;
+  margin-right: 1em;
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #32505E;  /*rgb(44, 42, 140)*/
+}
+
+/* Set Date */
+#currentDate {
+  margin-left: 0.5em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 1px 0px 0px 3px;
+  background-color: #3a5a69d5;
+  color: white;
+}
+
+.inputarea {
+  padding-bottom: 10px;
+}
+
+/* Add To do */
+#addtodo {
+  margin: 0px 10px 0px 10px;
+  background: #3a5a69a8;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  padding-right: 30px;
+}
+
+#classification {
+  margin-left: 0px;
+}
+
+/* 구분 select */
+#classification select {
+  padding: 4px 0px 4px 5px;
+  border-radius: 15px 0px 0px 15px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #3a5a69a8;
+  color: #D5C5E9;
+}
+
+/* select effect */
+#classification select:hover {
+    background: #FDDCEF;
+    color: #3A5A69;
+}
+
+/* what to do */
+#addtodo input[type='text'] {
+  background-color: #3a5a69a8;
+  color: #D5C5E9;
+  padding: 5px 0px 5px 8px;
+  font-size: 15px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  width: calc(100% - 250px);
+  border: 0;
+  outline: 0;
+}
+
+#addtodo input[type='text']::placeholder {
+  color: #d5c5e996;
+}
+
+#addtodo input[type='text']:hover {
+  background-color: #3A5A69;
+}
+
+/* what to do */
+#addtodo input[type='color'] {
+  background: #3a5a69a8;
+}
+
+/* Add To do - button */
+#addtodo button {
+  padding: 7px 8px 7px 8px;
+  border-radius: 0px 15px 15px 0px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #3a5a69a8;
+  color: #D5C5E9;
+  border: 0;
+  outline: 0;
+}
+
+/* Add To do - button effect */
+#addtodo button:hover {
+  background: #FDDCEF;
+  color: #3A5A69;
+}
+
+#listtitle {
+  margin-left: 0em;
+  margin-right: 0em;
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: white;
+}
+
+/* 현재 날짜와 시간 버튼 */
+#listtitle button {
+  margin-left: 5px;
+  padding: 7px 8px 7px 8px;
+  border-radius: 15px 15px 15px 15px;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: #A5B7C1;
+  color: #3A5A69;
+  border: 0;
+  outline: 0;
+}
+
+/* Todo table */
+#addtodo table {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #32505E;
+}
+
+.row {
+  background: #514644;
+}
+
+.col-done {
+  background: #535D55;
+  margin-top: 10px;
+  width: 260px;
+  float: right;
+}
+
+/*
+<p style = "color: blue">Todo List</p>
+
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 500px;
+  }
+</style>
+*/

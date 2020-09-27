@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang='ko'>
+  <head>
+    <meta charset="UTF-8">
+    <title>To do List</title>
+
+    <link href="/css/style.css" rel="stylesheet" type="ttext/css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  </head>
+  
+  <body>
+    <form action="/postTest" name="Ajaxform" method="POST">
+      <div class="container">
+        <h1 id="todolistHeader">Todo List</h1>
+        <a href="/todo/todolist.html" style="text-decoration: none">
+          <h3 id="myschedule">- Sehee's schedule -</h3>
+        </a>
+      <div class="row">
+        <div class="col-todo">
+          <hr>
+          <p id="enter"> When do you have to finish? Write and Press Enter!
+          <input type='date' name='dueDate' id='currentDate'>
+          <script>
+            document.getElementById('currentDate').value=new
+            Date().toISOString().substring(0, 10);
+          </script>
+
+          <div class="inputarea">
+            <ul id="addtodo">
+              <span id="classification">
+                <select name='toDo' size=1>
+                  <option value="default" selected disabled hidden>select</option>
+                  <option value=학교>학교</option>
+                  <option value=회사>회사</option>
+                  <option value=공부>공부</option>
+                  <option value=어학>어학</option>
+                  <option value=자격증>자격증</option>
+                  <option value=대외활동>대외활동</option>
+                  <option value=자기계발>자기계발</option>
+                  <option value=취미활동>취미활동</option>
+                  <option value=기타>기타</option>
+                </select>
+              </span>
+              <input type="text" name="toDetails" placeholder="what to do" onkeyup="onkeyup();">
+              <input type="color" name="toColor" value="#F5AB99">
+              <!--<input type="addtodo" id="Add To do"/>-->
+              <button id="addbtn" class="ajax">Add To do</button>
+              <hr width=90%>
+              <p id="listtitle">Todo
+                <button onclick="inputText.onkeyup()">현재 날짜와 시간</button>
+              </p>
+              <div class="col-todo">
+                <ul id="donelist"></ul>
+                <ul id="todolist"></ul>
+                <table name="todotable" width="500">
+                  <tr>
+                    <td>Date</td>
+                    <td>Todo</td>
+                    <td>Details</td>
+                    <td>Color</td>
+                  </tr>
+                  
+                </table>
+              </div>
+            </ul>
+          </div>
+        </div>
+        <div class="col-done">
+          <hr>
+          <p id="listtitle">Done</p>
+          <script>
+
+          </script>
+          <ul id="donelist"></ul>
+          <ul id="todolist"></ul>
+          <table width="500">
+            <tr>
+              <th>date</th>
+              <th>todo</th>
+              <th>details</th>
+              <th>color</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </form>
+
+    <%# JQuery id 값으로 접근 
+    <form action = "/todo/mariaDBConn.js" method="POST">%>
+    <script>
+      $(function send_nodeDB() {
+        $("#addbtn").click(function() {
+          $.ajax({
+            url: '/views/list.ejs',
+            async: true,  // false: 동기 요청
+            type: 'POST', // GET, POST
+            data: {
+              dueDate: $('#currentDate').val(),
+              toDo: $('#classification select').val(),
+              toDetails: $('#addtodo input[type=text]').val(),
+              toColor: $('#addtodo input[type=color]').val(),
+            },
+            dataType: 'json',
+            success: function(data) {
+              alert("POST SUCCESSFUL");
+            },
+            error: function(err) {
+              alert("POST FAIL");
+            }
+          })
+        })
+      })
+    </script>
+  </body>
+</html>
