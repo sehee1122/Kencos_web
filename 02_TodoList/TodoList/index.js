@@ -39,18 +39,18 @@ app.listen(PORT, function() {
 
 const mariadb = require('mariadb');
 
-// MySQL connection 생성
+// create MySQL connection
 //const conn = mariadb.createConnection({
 const pool = mariadb.createPool({
   host: "192.168.1.70", // server local IP
   port: "5506",
-  user: "shpark", // 계정 아이디
-  password: "shpark",  // 계정 비밀번호
-  database: "my_todo",  // 접속할 DB
+  user: "shpark", // account ID
+  password: "shpark",  // account PW
+  database: "my_todo",  // DB to connect to
   connectionLimit: 5
 })
 
-/* 연결 확인 */
+// Connection check
 pool.getConnection()
     .then(conn => {
       console.log('MariaDB successfully connected\n')
@@ -92,7 +92,7 @@ app.post('/views/index.ejs', function(req, res) {
   }
 })
 
-// DB에서 데이터 호출
+// Recalling data from DB
 app.get('/', function(req, res) {
   fs.readFile(__dirname + '/views/index.ejs', (err, data) => {
     if(err) {
@@ -105,7 +105,7 @@ app.get('/', function(req, res) {
 
           conn.query('SELECT * FROM TodoList_copy')
             .then(rows => {
-              // DB 불러오기
+              // load DB
               console.log(rows)
               res.render('.', { prodList: rows })
             })
@@ -121,5 +121,5 @@ app.get('/', function(req, res) {
   })
 })
 
-// 모듈로 만드는 부분
+// make into a module
 module.exports = router;
