@@ -1,0 +1,11 @@
+{
+  "development": {
+    "username": "shpark",
+    "password": "shpark",
+    "database": "my_todo",
+    "host": "192.168.1.70",
+    "port": "5506",
+    "dialect": "mariadb",
+    "operatorsAliases": false
+  }
+}
