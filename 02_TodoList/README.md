@@ -6,10 +6,15 @@
 npm install <package> --save
 ```
 
-### install Sequelize: config
-### todo DB table model
-### Sequelize data query
-### postman, client
+1 FirstPractice
+2 AddList
+3 TodoList
+4 ORMList
+
+##### install Sequelize: config
+##### todo DB table model
+##### Sequelize data query
+##### postman, client
 
 ```sh
 npm list | grep sequelize
