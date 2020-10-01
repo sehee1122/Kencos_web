@@ -6,10 +6,10 @@
 npm install <package> --save
 ```
 
-1 FirstPractice
-2 AddList
-3 TodoList
-4 ORMList
+1. FirstPractice
+2. AddList
+3. TodoList
+4. ORMList
 
 ##### install Sequelize: config
 ##### todo DB table model
