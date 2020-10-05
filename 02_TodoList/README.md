@@ -22,6 +22,13 @@ npm list | grep sequelize
 npx sequelize init
 ```
 
+if node.js
+-bash: sequelize: command not found
+```
+npm install --g or --save sequelize
+npm --g or --save sequelize-cli
+```
+
 2. todo DB table model
 > models > index.js, config > config.json, migrations, seeders
 
