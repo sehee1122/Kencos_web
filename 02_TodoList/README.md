@@ -38,9 +38,6 @@ npm --g or --save sequelize-cli
   - 모델 정의하기
 
   + TypeError: Cannot read property 'use_env_variable' of undefined
-```sh
-  
-```
 
 3. Sequelize data query
   - CLI로 model 만들기
