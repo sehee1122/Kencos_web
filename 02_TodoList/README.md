@@ -66,3 +66,5 @@ node_modules/.bin/sequelize model:generate --name TodoList_seq --attributes id:i
 ```
 ./node_modules/.bin/sequelize seed:generate --name userData
 ```
+
+Error: No Sequelize instance passed
