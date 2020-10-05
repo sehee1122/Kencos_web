@@ -33,8 +33,13 @@ npx sequelize init
 ```
 
 3. Sequelize data query
+  - CLI로 model 만들기
 ```
 sequelize model:create --name TABLE_NAME  --attributes "COLUMN1:type, COLUMN2:type, COLUMN3:type"
+```
+  - user model 만들기
+```
+sequelize model:create --name user --attributes nickName: string, passWord: string
 ```
 
 4. postman, client
