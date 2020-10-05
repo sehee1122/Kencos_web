@@ -11,8 +11,10 @@ npm install <package> --save
 3. TodoList
 4. ORMList
 
-* install Sequelize: config
-```sh
+List
+-----
+1. install Sequelize: config
+```
 npm list | grep sequelize
 npm install -- save sequelize@5.9.5
 npm install --save sequelize-cli@5.5.1
@@ -20,16 +22,20 @@ npm list | grep sequelize
 npx sequelize init
 ```
 
-* todo DB table model
+2. todo DB table model
 > models > index.js, config > config.json, migrations, seeders
 
-- 모델 정의하기
+  - 모델 정의하기
 
-+ TypeError: Cannot read property 'use_env_variable' of undefined
+  + TypeError: Cannot read property 'use_env_variable' of undefined
 ```sh
   
 ```
 
-* Sequelize data query
-* postman, client
+3. Sequelize data query
+```
+sequelize model:create --name TABLE_NAME  --attributes "COLUMN1:type, COLUMN2:type, COLUMN3:type"
+```
+
+4. postman, client
 
