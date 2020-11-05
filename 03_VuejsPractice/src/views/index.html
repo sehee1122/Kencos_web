@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--<link href="./css/style.css" rel="stylesheet" type="text/css">-->
+  <title>Document</title>
+    <!--<span v-bind:class="[customClass.size, customClass.color]">
+      {{ message }}
+    </span>-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<!--THIRD TEST-->
+<style>
+  .dropdown ul {
+    display: none;
+    list-style: none;
+    margin: 0;
+    border: 1px solid black;
+    padding: 10px;
+    width: 200px;
+  }
+  .dropdown.on ul {
+    display: block;
+  }
+</style>
+<body>
+  <!--new Vue라는 인스턴스, 외부에서 사용할 데이터를 data 메소드로 정의, 사용자 입력값: v-model
+  데이터 연결하여 사용할 수 있음. 중괄호 두개 내에 변수명 입력 = 화면에 출력-->
+  <div id="appTest">
+    <!--FIRST TEST-->
+    <input type="text" id="user_id" v-model="userId">
+    <input type="password" id="user_password" v-model="userPassword">
+    <button type="button">Login</button>
+    <br/>
+    아이디: {{ userId }}
+    <br>
+    비밀번호: {{ userPassword }}
+
+    <!--SECOND TEST-->
+    <ul style="list-style: none;">
+      <!--반복문 사용-->
+      <template v-for="item in items">
+        <li>
+          <img :src="item.image">
+        </li>
+        <li>
+          {{ item.id }}. {{ item.title }}
+        </li>
+      </template>
+    </ul>
+
+    <!--THIRD TEST-->
+    <!-- : == v-bind: -->
+    <img :id="`thumbnail_${id}`" :src="image">
+    <!--<div :style="[style, fontStyle]">-->
+    <button type="button" @click="btnClick">버튼</button>
+    <div :class="[dropdown, toggle]">
+      테스트용 DIV
+      <ul>
+        <li><a href="#">메뉴1</a></li>
+        <li><a href="#">메뉴2</a></li>
+      </ul>
+    </div>
+    <!--FOURTH TEST: Method 선언하기-->
+    <!-- @ == v-on: -->
+    <button type="button" @click="add">더하기</button>
+    {{ counter }}
+    
+    <input type="text" @keyup.enter="keyUp">
+  </div>
+
+  <!-- development version, includes helpful console warnings -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    let appTest = new Vue({
+      el: '#appTest',
+      data() {
+        return {
+          // FIRST TEST
+          userId: '',
+          userPassword: '',
+
+          // SECOND TEST
+          items: [
+            { id: 1, image: 'https://picsum.photos/210/118/?image=1', title: '컴퓨터' },
+            { id: 2, image: 'https://picsum.photos/210/118/?image=100', title: '해변' },
+            { id: 3, image: 'https://picsum.photos/210/118/?image=160', title: '휴대폰' },
+            { id: 4, image: 'https://picsum.photos/210/118/?image=200', title: '황소' }
+          ],
+
+          // THIRD TEST
+          id: 1, image: 'https://picsum.photos/200/200/?image=353',
+          style: { background: 'red' },  // == style: 'background:red'
+          fontStyle: { fontSize: '10px', 'font-family': 'dotum' },
+          dropdown: 'dropdown',  // String == dropdown: 'dropdown', JSON form == dropdown: { dropdown: true }
+          toggle: { on: false },
+
+          // FOURTH TEST
+          counter: 0
+        };
+      },
+      methods: {
+        add() {
+          this.counter ++;
+        },  // add: () => { !== method 선언은 화살표 함수를 사용하면 안됨
+        keyUp(ev) {
+          if (ev.keyCode !== 13) {
+            console.log('엔터키 아님');
+            return;
+          }
+          console.log('엔터키 눌림');
+        },
+        btnClick() {
+          this.toggle.on = ! this.toggle.on;
+        }
+      }
+    })
+  </script>
+
+ 
+<h1>vue lifecyle</h1>
+<p>
+  <button onclick="javascript:initVue();">인스턴스 초기화</button>
+  <button onclick="javascript:destroyVue();">인스턴스 제거</button>
+</p>
+<ul id="app" style="background: yellow;">
+  <li v-for=' no in lastNo '> {{ no }} </li>
+  <li><button @click=' append() '>appned</button></li>
+</ul>
+      
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+var app = null;
+function initVue(){
+  app = new Vue({
+    el: "#app",
+    data: { lastNo: 10 },
+    methods: {
+      append: function(){
+        this.lastNo++;
+      }
+    },
+    computed: {
+      // 사용하지는 않지만, 언제 발견되는지 확인하기 위해
+      dummy: function(){
+        return this.lastNo;
+      }
+    },
+    beforeCreate: function(){
+      console.log("[생명주기] beforeCreate!", this);
+    },
+    created: function(){
+      console.log("[생명주기] created!", this);
+    },
+    beforeMount: function(){
+      console.log("[생명주기] beforeMount!", this);
+    },
+    mounted: function(){
+      console.log("[생명주기] mounted!", this);
+    },
+    beforeUpdate: function(){
+      console.log("[생명주기] beforeUpdate!", this);
+    },
+    updated: function(){
+      console.log("[생명주기] updated!", this);
+    },
+    beforeDestroy: function(){
+      console.log("[생명주기] beforeDestroy!", this);
+    },
+    destroyed: function(){
+      console.log("[생명주기] destroyed!", this);
+    },
+  });
+}
+function destroyVue(){
+  if(app){
+    app.$destroy();
+  }
+}
+</script>
+
+  <!--<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+  <script src="./index.js"></script> -->
+</body>
+</html>
